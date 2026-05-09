@@ -1,0 +1,86 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+/* Header Styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo Styling */
+.header .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Navigation Styling */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links li a {
+  color: #333;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  padding: 5px 0;
+}
+
+/* Hover effect for navigation links */
+.nav-links li a:hover {
+  color: #f4a261;
+  border-bottom: 2px solid #f4a261;
+  transform: translateY(-2px);
+}
+
+/* Active link effect */
+.nav-links li a:active {
+  color: #e76f51;
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .nav-links li a {
+    font-size: 1.3rem;
+    padding: 10px 0;
+  }
+}
