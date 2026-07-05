@@ -42,8 +42,13 @@ function Booking({ onBack }) {
   };
 
   const handleSubmit = async () => {
+    if (loading) return;
     setLoading(true);
     setError('');
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+
     try {
       const res = await fetch(`${API_URL}/bookings`, {
         method: 'POST',
@@ -57,6 +62,7 @@ function Booking({ onBack }) {
           budget:   budget,
           services: selected,
         }),
+        signal: controller.signal,
       });
 
       const data = await res.json();
@@ -67,8 +73,13 @@ function Booking({ onBack }) {
         setError('Something went wrong, please try again.');
       }
     } catch (err) {
-      setError('Connection error, please try again.');
+      if (err.name === 'AbortError') {
+        setError('This is taking longer than usual. Please wait a moment and check your email before trying again — your booking may have already gone through.');
+      } else {
+        setError('Connection error, please try again.');
+      }
     } finally {
+      clearTimeout(timeoutId);
       setLoading(false);
     }
   };
